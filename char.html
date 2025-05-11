@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Planets Gravity Chart</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <canvas id="gravityChart" width="400" height="200"></canvas>
+    <script>
+        fetch('http://127.0.0.1:8000/planets/gravity_chart')
+            .then(response => response.json())
+            .then(data => {
+                const labels = data.map(item => item.Planet);
+                const gravities = data.map(item => item["Surface Gravity(m/s^2)"]);
+
+                const ctx = document.getElementById('gravityChart').getContext('2d');
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Gravity (m/s²)',
+                            data: gravities,
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: { beginAtZero: true }
+                        }
+                    }
+                });
+            });
+    </script>
+</body>
+</html>
