@@ -3,7 +3,7 @@ import pandas as pd
 
 app = FastAPI()
 
-# خواندن داده‌ها از فایل CSV
+
 data = pd.read_csv("planets_updated.csv")
 
 
@@ -26,7 +26,7 @@ def calculate_weight(mass: float, planet_name: str):
     if len(planet) == 0:
         return {"error": "Planet not found"}
     gravity = planet["Surface Gravity(m/s^2)"].iloc[0]
-    weight = mass * gravity  # وزن = جرم × جاذبه
+    weight = mass * gravity  
     return {"planet": planet_name, "mass_kg": mass, "weight_newtons": weight}
 
 
