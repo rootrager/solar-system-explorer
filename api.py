@@ -4,7 +4,7 @@ import pandas as pd
 app = FastAPI()
 
 # خواندن داده‌ها از فایل CSV
-data = pd.read_csv("/home/miggor/Desktop/solar_system/planets_updated.csv")
+data = pd.read_csv("planets_updated.csv")
 
 
 @app.get("/planets")
